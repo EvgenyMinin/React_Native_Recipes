@@ -6,6 +6,8 @@ import { useFonts } from 'expo-font';
 
 import MealDetailsScreen from './screens/MealDetailsScreen';
 
+import MealsNavigator from './navigation/MealsNavigator';
+
 export default function App() {
   const [fontLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -16,10 +18,7 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
-      <MealDetailsScreen />
-      <StatusBar style="auto" />
-    </View>
+    <MealsNavigator />
   );
 }
 
