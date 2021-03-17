@@ -1,12 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Button, Text } from 'react-native';
 
 import Center from '../components/Center';
 
-const CategoryMealsScreen = () => {
+const CategoryMealsScreen = ({ navigation }) => {
   return (
     <Center>
       <Text>Category Meals</Text>
+      <Button
+        title="Go To Details"
+        onPress={() => navigation.navigate('MealDetail')}
+      />
     </Center>
   );
 };
