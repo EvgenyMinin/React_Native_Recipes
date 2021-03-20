@@ -9,7 +9,7 @@ const CategoryMealsScreen = ({ navigation }) => {
       <Text>Category Meals</Text>
       <Button
         title="Go To Details"
-        onPress={() => navigation.navigate('MealDetail')}
+        onPress={() => navigation.navigate('Meal Detail')}
       />
     </Center>
   );
