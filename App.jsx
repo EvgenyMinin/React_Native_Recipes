@@ -2,7 +2,7 @@ import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import CategoryMealsScreen from './screens/CategoryMealsScreen';
@@ -40,6 +40,15 @@ export default function App() {
         <MealsStack.Screen
           name="Meal Category"
           component={CategoryMealsScreen}
+          options={({ route }) => ({
+            headerTitle: route.params.title,
+            headerStyle: {
+              backgroundColor:
+                Platform.OS === 'android' ? Colors.primary : 'white',
+            },
+            headerTintColor:
+              Platform.OS === 'android' ? 'white' : Colors.primary,
+          })}
         />
         <MealsStack.Screen name="Meal Detail" component={MealDetailsScreen} />
       </MealsStack.Navigator>

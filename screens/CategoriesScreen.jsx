@@ -10,18 +10,18 @@ import {
 import { CATEGORIES } from '../data/dummyData';
 
 const CategoriesScreens = ({ navigation }) => {
-  const renderGridItem = (itemData) => {
+  const renderGridItem = ({ item }) => {
     return (
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
           navigation.navigate('Meal Category', {
-            title: itemData.item.title,
+            title: item.title,
           });
         }}
       >
         <View>
-          <Text>{itemData.item.title}</Text>
+          <Text>{item.title}</Text>
         </View>
       </TouchableOpacity>
     );
