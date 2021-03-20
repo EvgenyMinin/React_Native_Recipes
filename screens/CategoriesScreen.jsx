@@ -1,20 +1,33 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
+import { FlatList, Text, View, StyleSheet } from 'react-native';
 
-import Center from '../components/Center';
+import { CATEGORIES } from '../data/dummyData';
+
+const renderGridItem = (itemData) => {
+  return (
+    <View style={styles.gridItem}>
+      <Text>{itemData.item.title}</Text>
+    </View>
+  );
+};
 
 const CategoriesScreens = ({ navigation }) => {
   return (
-    <Center>
-      <Text>Categories Screen</Text>
-      <Button
-        title="Go to Meals!"
-        onPress={() => {
-          navigation.navigate('CategoryMeals');
-        }}
-      />
-    </Center>
+    <FlatList
+      keyExtractor={(item) => item.id}
+      data={CATEGORIES}
+      renderItem={renderGridItem}
+      numColumns={2}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  gridItem: {
+    flex: 1,
+    margin: 15,
+    height: 150,
+  },
+});
 
 export default CategoriesScreens;
