@@ -15,7 +15,9 @@ const CategoriesScreens = ({ navigation }) => {
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
-          navigation.navigate('Meal Category');
+          navigation.navigate('Meal Category', {
+            title: itemData.item.title,
+          });
         }}
       >
         <View>
