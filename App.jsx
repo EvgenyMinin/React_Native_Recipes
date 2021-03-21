@@ -11,7 +11,6 @@ import CategoryMealsScreen from './screens/CategoryMealsScreen';
 import MealDetailsScreen from './screens/MealDetailsScreen';
 import Colors from './constants/Colors';
 
-
 enableScreens();
 
 const MealsStack = createStackNavigator();
@@ -50,7 +49,13 @@ export default function App() {
             headerTitle: route.params.title,
           })}
         />
-        <MealsStack.Screen name="Meal Detail" component={MealDetailsScreen} />
+        <MealsStack.Screen
+          name="Meal Detail"
+          component={MealDetailsScreen}
+          options={({ route }) => ({
+            headerTitle: route.params.title,
+          })}
+        />
       </MealsStack.Navigator>
     </NavigationContainer>
   );

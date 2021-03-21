@@ -18,7 +18,12 @@ const CategoryMealsScreen = ({ route, navigation }) => {
       duration={item.duration}
       complexity={item.complexity}
       affordability={item.affordability}
-      onSelectMeal={() => navigation.navigate('Meal Detail')}
+      onSelectMeal={() =>
+        navigation.navigate('Meal Detail', {
+          mealId: item.id,
+          title: item.title,
+        })
+      }
     />
   );
 
