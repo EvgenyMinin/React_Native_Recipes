@@ -12,6 +12,7 @@ const CategoriesScreens = ({ navigation }) => {
         color={item.color}
         onSelect={() =>
           navigation.navigate('Meal Category', {
+            id: item.id,
             title: item.title,
           })
         }
