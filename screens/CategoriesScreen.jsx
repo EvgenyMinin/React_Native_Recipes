@@ -4,7 +4,7 @@ import CategoryGridTile from '../components/CategoryGridTile';
 
 import { CATEGORIES } from '../data/dummyData';
 
-const CategoriesScreens = ({ navigation }) => {
+const CategoriesScreen = ({ navigation }) => {
   const renderGridItem = ({ item }) => {
     return (
       <CategoryGridTile
@@ -29,4 +29,4 @@ const CategoriesScreens = ({ navigation }) => {
   );
 };
 
-export default CategoriesScreens;
+export default CategoriesScreen;

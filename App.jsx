@@ -2,20 +2,15 @@ import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
-import { Platform } from 'react-native';
 
-import CategoriesScreen from './screens/CategoriesScreen';
-import CategoryMealsScreen from './screens/CategoryMealsScreen';
-import MealDetailsScreen from './screens/MealDetailsScreen';
-import HeaderButton from './components/HeaderButton';
-import Colors from './constants/Colors';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { MealsStack } from './navigation/MealsStack';
+import FavoriteMealsScreen from './screens/FavoriteMealsScreen';
 
 enableScreens();
 
-const MealsStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -28,46 +23,10 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <MealsStack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android' ? Colors.primary : 'white',
-          },
-          headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
-        }}
-      >
-        <MealsStack.Screen
-          name="Meal Categories"
-          component={CategoriesScreen}
-          options={{
-            title: 'Overview',
-          }}
-        />
-        <MealsStack.Screen
-          name="Meal Category"
-          component={CategoryMealsScreen}
-          options={({ route }) => ({
-            headerTitle: route.params.title,
-          })}
-        />
-        <MealsStack.Screen
-          name="Meal Detail"
-          component={MealDetailsScreen}
-          options={({ route }) => ({
-            headerTitle: route.params.title,
-            headerRight: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                  title="Favotite"
-                  iconName="ios-star"
-                  onPress={() => console.log('add to favorite')}
-                />
-              </HeaderButtons>
-            ),
-          })}
-        />
-      </MealsStack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Meals" component={MealsStack} />
+        <Tab.Screen name="Favorites" component={FavoriteMealsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
