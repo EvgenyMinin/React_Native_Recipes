@@ -9,7 +9,9 @@ import { Platform } from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import CategoryMealsScreen from './screens/CategoryMealsScreen';
 import MealDetailsScreen from './screens/MealDetailsScreen';
+import HeaderButton from './components/HeaderButton';
 import Colors from './constants/Colors';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 enableScreens();
 
@@ -54,6 +56,15 @@ export default function App() {
           component={MealDetailsScreen}
           options={({ route }) => ({
             headerTitle: route.params.title,
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                  title="Favotite"
+                  iconName="ios-star"
+                  onPress={() => console.log('add to favorite')}
+                />
+              </HeaderButtons>
+            ),
           })}
         />
       </MealsStack.Navigator>
