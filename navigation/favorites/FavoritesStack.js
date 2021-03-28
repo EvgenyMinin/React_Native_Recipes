@@ -1,14 +1,18 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Platform } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import FavoriteMealsScreen from '../screens/FavoriteMealsScreen';
-import MealDetailsScreen from '../screens/MealDetailsScreen';
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
+import HeaderButton from '../../components/HeaderButton';
+
+import FavoriteMealsScreen from '../../screens/FavoriteMealsScreen';
+import MealDetailsScreen from '../../screens/MealDetailsScreen';
 
 const FavoritesStackNavigator = createStackNavigator();
 
-export const FavoritesStack = () => (
+export const FavoritesStack = ({navigation}) => (
   <FavoritesStackNavigator.Navigator
     screenOptions={{
       headerStyle: {
@@ -22,6 +26,15 @@ export const FavoritesStack = () => (
       component={FavoriteMealsScreen}
       options={{
         title: 'Your Favorites',
+        headerLeft: () => (
+          <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item
+              title="Filters"
+              iconName="ios-menu"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            />
+          </HeaderButtons>
+        ),
       }}
     />
     <FavoritesStackNavigator.Screen

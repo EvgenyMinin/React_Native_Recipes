@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
 
 import { MEALS } from '../data/dummyData';
 

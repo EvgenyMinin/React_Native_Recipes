@@ -5,11 +5,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
 import { Ionicons } from '@expo/vector-icons';
-
-import { MealsStack } from './navigation/MealsStack';
-import Colors from './constants/Colors';
-import { FavoritesStack } from './navigation/FavoritesStack';
 import { Platform } from 'react-native';
+
+import Colors from './constants/Colors';
+import MealsDrawer from './navigation/meals/MealsDrawer';
+import FavoritesDrawer from './navigation/favorites/FavoritesDrawer';
 
 enableScreens();
 
@@ -39,10 +39,10 @@ export default function App() {
             Platform.OS === 'android' ? Colors.primary : '',
         }}
       >
-        <BottomTabsNavigator.Screen name="Meals" component={MealsStack} />
+        <BottomTabsNavigator.Screen name="Meals" component={MealsDrawer} />
         <BottomTabsNavigator.Screen
           name="Favorites"
-          component={FavoritesStack}
+          component={FavoritesDrawer}
         />
       </BottomTabsNavigator.Navigator>
     </NavigationContainer>

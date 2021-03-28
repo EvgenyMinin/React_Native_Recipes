@@ -2,16 +2,18 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { DrawerActions } from '@react-navigation/native';
 
-import CategoriesScreen from '../screens/CategoriesScreen';
-import CategoryMealsScreen from '../screens/CategoryMealsScreen';
-import MealDetailsScreen from '../screens/MealDetailsScreen';
-import Colors from '../constants/Colors';
-import HeaderButton from '../components/HeaderButton';
+import Colors from '../../constants/Colors';
+import HeaderButton from '../../components/HeaderButton';
+
+import CategoriesScreen from '../../screens/CategoriesScreen';
+import CategoryMealsScreen from '../../screens/CategoryMealsScreen';
+import MealDetailsScreen from '../../screens/MealDetailsScreen';
 
 const MealsStackNavigator = createStackNavigator();
 
-export const MealsStack = () => (
+export const MealsStack = ({navigation}) => (
   <MealsStackNavigator.Navigator
     screenOptions={{
       headerStyle: {
@@ -24,7 +26,16 @@ export const MealsStack = () => (
       name="Meal Categories"
       component={CategoriesScreen}
       options={{
-        title: 'Overview',
+        title: 'Meal Categories',
+        headerLeft: () => (
+          <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item
+              title="Filters"
+              iconName="ios-menu"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            />
+          </HeaderButtons>
+        ),
       }}
     />
     <MealsStackNavigator.Screen
