@@ -9,10 +9,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { MealsStack } from './navigation/MealsStack';
 import Colors from './constants/Colors';
 import { FavoritesStack } from './navigation/FavoritesStack';
+import { Platform } from 'react-native';
 
 enableScreens();
 
-const Tab = createBottomTabNavigator();
+const BottomTabsNavigator = createBottomTabNavigator();
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -25,15 +26,25 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <BottomTabsNavigator.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({size, color}) => tabBarIconMapper(route.name, size, color),
+          tabBarIcon: ({ size, color }) =>
+            tabBarIconMapper(route.name, size, color),
         })}
-        tabBarOptions={{ activeTintColor: Colors.secondary }}
+        tabBarOptions={{
+          activeTintColor: Colors.secondary,
+          activeBackgroundColor:
+            Platform.OS === 'android' ? Colors.primary : '',
+          inactiveBackgroundColor:
+            Platform.OS === 'android' ? Colors.primary : '',
+        }}
       >
-        <Tab.Screen name="Meals" component={MealsStack} />
-        <Tab.Screen name="Favorites" component={FavoritesStack} />
-      </Tab.Navigator>
+        <BottomTabsNavigator.Screen name="Meals" component={MealsStack} />
+        <BottomTabsNavigator.Screen
+          name="Favorites"
+          component={FavoritesStack}
+        />
+      </BottomTabsNavigator.Navigator>
     </NavigationContainer>
   );
 }
