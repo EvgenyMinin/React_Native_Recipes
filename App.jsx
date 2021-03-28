@@ -7,8 +7,8 @@ import { enableScreens } from 'react-native-screens';
 import { Ionicons } from '@expo/vector-icons';
 
 import { MealsStack } from './navigation/MealsStack';
-import FavoriteMealsScreen from './screens/FavoriteMealsScreen';
 import Colors from './constants/Colors';
+import { FavoritesStack } from './navigation/FavoritesStack';
 
 enableScreens();
 
@@ -32,7 +32,7 @@ export default function App() {
         tabBarOptions={{ activeTintColor: Colors.secondary }}
       >
         <Tab.Screen name="Meals" component={MealsStack} />
-        <Tab.Screen name="Favorites" component={FavoriteMealsScreen} />
+        <Tab.Screen name="Favorites" component={FavoritesStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

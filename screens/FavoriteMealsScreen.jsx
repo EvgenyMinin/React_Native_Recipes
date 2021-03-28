@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text} from 'react-native';
+import { Button, Text } from 'react-native';
 
-import Center from '../components/Center';
+import { MEALS } from '../data/dummyData';
 
-const FavoriteMealsScreen = () => {
-  return (
-    <Center>
-      <Text>Favorite Meals</Text>
-    </Center>
+import MealList from '../components/MealList';
+
+const FavoriteMealsScreen = ({ navigation }) => {
+  const favoriteMealList = MEALS.filter(
+    (meal) => meal.id === 'm1' || meal.id === 'm2'
   );
+  return <MealList listData={favoriteMealList} navigation={navigation} />;
 };
 
 export default FavoriteMealsScreen;
