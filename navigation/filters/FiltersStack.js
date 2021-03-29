@@ -4,14 +4,22 @@ import React from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import FiltersScreen from '../../screens/FiltersScreen';
+import Colors from '../../constants/Colors';
 
 import HeaderButton from '../../components/HeaderButton';
 
 const FiltersStackNavigator = createStackNavigator();
 
-const filtersStack = ({navigation}) => {
+const filtersStack = ({ navigation }) => {
   return (
-    <FiltersStackNavigator.Navigator>
+    <FiltersStackNavigator.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white',
+        },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
+      }}
+    >
       <FiltersStackNavigator.Screen
         name="Filter Meals"
         component={FiltersScreen}
