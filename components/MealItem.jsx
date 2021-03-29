@@ -29,9 +29,9 @@ const MealItem = ({
             </ImageBackground>
           </View>
           <View style={[styles.mealRow, styles.mealDetail]}>
-            <Text>{duration}m</Text>
-            <Text>{complexity.toUpperCase()}</Text>
-            <Text>{affordability.toUpperCase()}</Text>
+            <Text style={styles.textInfo}>{duration}m</Text>
+            <Text style={styles.textInfo}>{complexity.toUpperCase()}</Text>
+            <Text style={styles.textInfo}>{affordability.toUpperCase()}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
   },
   mealHeader: {
     height: '85%',
+  },
+  textInfo: {
+    fontFamily: 'open-sans',
   },
   mealDetail: {
     paddingHorizontal: 10,

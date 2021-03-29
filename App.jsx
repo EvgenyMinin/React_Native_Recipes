@@ -37,6 +37,9 @@ export default function App() {
             Platform.OS === 'android' ? Colors.primary : '',
           inactiveBackgroundColor:
             Platform.OS === 'android' ? Colors.primary : '',
+          labelStyle: {
+            fontFamily: 'open-sans',
+          },
         }}
       >
         <BottomTabsNavigator.Screen name="Meals" component={MealsDrawer} />
