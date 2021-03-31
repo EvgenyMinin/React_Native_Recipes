@@ -12,7 +12,7 @@ import MealDetailsScreen from '../../screens/MealDetailsScreen';
 
 const FavoritesStackNavigator = createStackNavigator();
 
-export const FavoritesStack = ({navigation}) => (
+const FavoritesStack = ({ navigation }) => (
   <FavoritesStackNavigator.Navigator
     screenOptions={{
       headerStyle: {
@@ -48,3 +48,5 @@ export const FavoritesStack = ({navigation}) => (
     />
   </FavoritesStackNavigator.Navigator>
 );
+
+export default FavoritesStack;

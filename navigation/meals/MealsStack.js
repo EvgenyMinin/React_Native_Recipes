@@ -13,7 +13,7 @@ import MealDetailsScreen from '../../screens/MealDetailsScreen';
 
 const MealsStackNavigator = createStackNavigator();
 
-export const MealsStack = ({ navigation }) => (
+const MealsStack = ({ navigation }) => (
   <MealsStackNavigator.Navigator
     screenOptions={{
       headerStyle: {
@@ -65,3 +65,5 @@ export const MealsStack = ({ navigation }) => (
     />
   </MealsStackNavigator.Navigator>
 );
+
+export default MealsStack;
