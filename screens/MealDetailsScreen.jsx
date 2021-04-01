@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import DefaultText from '../components/DefaultText';
-import { MEALS } from '../data/dummyData';
 
 const ListItem = ({ children }) => {
   return (
@@ -13,8 +13,10 @@ const ListItem = ({ children }) => {
 };
 
 const MealDetailsScreen = ({ route }) => {
+  const availableMeals = useSelector(state => state.meals.meals);
+
   const { mealId } = route.params;
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   return (
     <ScrollView>
