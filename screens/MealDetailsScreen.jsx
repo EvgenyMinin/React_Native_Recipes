@@ -16,10 +16,13 @@ const ListItem = ({ children }) => {
 };
 
 const MealDetailsScreen = ({ navigation, route }) => {
+  const { mealId } = route.params;
   const availableMeals = useSelector((state) => state.meals.meals);
+  const currentMealsIsFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
   const dispatch = useDispatch();
 
-  const { mealId } = route.params;
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   const handlerToggleFavorite = useCallback(() => {
@@ -32,13 +35,13 @@ const MealDetailsScreen = ({ navigation, route }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="Favotite"
-            iconName="ios-star"
+            iconName={currentMealsIsFavorite ? 'ios-star' : 'ios-star-outline'}
             onPress={handlerToggleFavorite}
           />
         </HeaderButtons>
       ),
     });
-  }, []);
+  }, [currentMealsIsFavorite]);
 
   return (
     <ScrollView>
