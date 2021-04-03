@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Center from '../components/Center';
+import DefaultText from '../components/DefaultText';
 import MealList from '../components/MealList';
 
 const FavoriteMealsScreen = ({ navigation }) => {
@@ -12,7 +12,7 @@ const FavoriteMealsScreen = ({ navigation }) => {
     <>
       {favoriteMeals.length === 0 ? (
         <Center>
-          <Text>You haven't any favorite meals yet</Text>
+          <DefaultText>You haven't any favorite meals yet</DefaultText>
         </Center>
       ) : (
         <MealList listData={favoriteMeals} navigation={navigation} />
