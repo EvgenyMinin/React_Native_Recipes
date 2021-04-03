@@ -6,14 +6,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
 import { Ionicons } from '@expo/vector-icons';
 import { Platform } from 'react-native';
+import { createStore, combineReducers } from 'redux';
 
 import Colors from './constants/Colors';
 import MealsDrawer from './navigation/meals/MealsDrawer';
 import FavoritesDrawer from './navigation/favorites/FavoritesDrawer';
 
+import mealsReducer from './store/reducers/meals';
+import { Provider } from 'react-redux';
+
 enableScreens();
 
 const BottomTabsNavigator = createBottomTabNavigator();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(rootReducer);
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -25,30 +35,32 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <NavigationContainer>
-      <BottomTabsNavigator.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ size, color }) =>
-            tabBarIconMapper(route.name, size, color),
-        })}
-        tabBarOptions={{
-          activeTintColor: Colors.secondary,
-          activeBackgroundColor:
-            Platform.OS === 'android' ? Colors.primary : '',
-          inactiveBackgroundColor:
-            Platform.OS === 'android' ? Colors.primary : '',
-          labelStyle: {
-            fontFamily: 'open-sans',
-          },
-        }}
-      >
-        <BottomTabsNavigator.Screen name="Meals" component={MealsDrawer} />
-        <BottomTabsNavigator.Screen
-          name="Favorites"
-          component={FavoritesDrawer}
-        />
-      </BottomTabsNavigator.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <BottomTabsNavigator.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ size, color }) =>
+              tabBarIconMapper(route.name, size, color),
+          })}
+          tabBarOptions={{
+            activeTintColor: Colors.secondary,
+            activeBackgroundColor:
+              Platform.OS === 'android' ? Colors.primary : '',
+            inactiveBackgroundColor:
+              Platform.OS === 'android' ? Colors.primary : '',
+            labelStyle: {
+              fontFamily: 'open-sans',
+            },
+          }}
+        >
+          <BottomTabsNavigator.Screen name="Meals" component={MealsDrawer} />
+          <BottomTabsNavigator.Screen
+            name="Favorites"
+            component={FavoritesDrawer}
+          />
+        </BottomTabsNavigator.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

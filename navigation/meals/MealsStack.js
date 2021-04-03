@@ -4,16 +4,17 @@ import { Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { DrawerActions } from '@react-navigation/native';
 
-import Colors from '../../constants/Colors';
-import HeaderButton from '../../components/HeaderButton';
-
 import CategoriesScreen from '../../screens/CategoriesScreen';
 import CategoryMealsScreen from '../../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../../screens/MealDetailsScreen';
 
+import HeaderButton from '../../components/HeaderButton';
+
+import Colors from '../../constants/Colors';
+
 const MealsStackNavigator = createStackNavigator();
 
-export const MealsStack = ({ navigation }) => (
+const MealsStack = ({ navigation }) => (
   <MealsStackNavigator.Navigator
     screenOptions={{
       headerStyle: {
@@ -52,16 +53,9 @@ export const MealsStack = ({ navigation }) => (
       component={MealDetailsScreen}
       options={({ route }) => ({
         headerTitle: route.params.title,
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item
-              title="Favotite"
-              iconName="ios-star"
-              onPress={() => console.log('add to favorite')}
-            />
-          </HeaderButtons>
-        ),
       })}
     />
   </MealsStackNavigator.Navigator>
 );
+
+export default MealsStack;

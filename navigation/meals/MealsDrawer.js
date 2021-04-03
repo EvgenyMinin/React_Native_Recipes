@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Colors from '../../constants/Colors';
 
-import { MealsStack } from './MealsStack';
+import MealsStack from './MealsStack';
 import FiltersStack from '../filters/FiltersStack';
 
 const Drawer = createDrawerNavigator();
