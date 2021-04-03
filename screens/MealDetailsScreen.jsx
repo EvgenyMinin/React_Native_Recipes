@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultText from '../components/DefaultText';
+import HeaderButton from '../components/HeaderButton';
+import { toggleFavotite } from '../store/actions/meals';
 
 const ListItem = ({ children }) => {
   return (
@@ -12,11 +15,30 @@ const ListItem = ({ children }) => {
   );
 };
 
-const MealDetailsScreen = ({ route }) => {
-  const availableMeals = useSelector(state => state.meals.meals);
+const MealDetailsScreen = ({ navigation, route }) => {
+  const availableMeals = useSelector((state) => state.meals.meals);
+  const dispatch = useDispatch();
 
   const { mealId } = route.params;
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
+
+  const handlerToggleFavorite = useCallback(() => {
+    dispatch(toggleFavotite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Favotite"
+            iconName="ios-star"
+            onPress={handlerToggleFavorite}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, []);
 
   return (
     <ScrollView>
