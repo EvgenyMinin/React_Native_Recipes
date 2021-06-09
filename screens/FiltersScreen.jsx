@@ -38,8 +38,6 @@ const FiltersScreen = ({ navigation }) => {
       vegetarian: isVegetarian,
     };
 
-    console.log(`appliedFilters`, appliedFilters);
-
     dispatch(setFilters(appliedFilters));
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
